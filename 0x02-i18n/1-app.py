@@ -1,0 +1,24 @@
+from flask import Flask, render_template
+from flask_babel import Babel
+
+# Initialize Flask app
+app = Flask(__name__)
+
+# Config class with available languages and default settings
+class Config:
+    LANGUAGES = ['en', 'fr']  # Available languages
+    BABEL_DEFAULT_LOCALE = 'en'  # Default language
+    BABEL_DEFAULT_TIMEZONE = 'UTC'  # Default timezone
+
+# Apply the configuration to the app
+app.config.from_object(Config)
+
+# Instantiate the Babel object
+babel = Babel(app)
+
+@app.route('/')
+def index():
+    return render_template('0-index.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
